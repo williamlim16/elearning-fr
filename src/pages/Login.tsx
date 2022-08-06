@@ -1,5 +1,7 @@
+import LoginInput from "../components/Login/LoginInput";
+
 function Login() {
-  return <div>Hlloe lowign</div>;
+  return <LoginInput />;
 }
 
 export default Login;
