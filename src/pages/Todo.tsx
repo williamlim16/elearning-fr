@@ -1,9 +1,9 @@
 import { useState } from "react";
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
-import InputTodo from "../components/Todos/TodoInput";
-import TodoList from "../components/Todos/TodoList";
-import { Todo } from "../components/Todos/model";
+import InputTodo from "../components/Todo/TodoInput";
+import TodoList from "../components/Todo/TodoList";
+import { Todo } from "../components/Todo/model";
 
 function Todos() {
   const [todos, setTodos] = useState<Todo[]>([]);
