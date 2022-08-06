@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
-import InputTodo from "../components/Todos/InputTodo";
+import InputTodo from "../components/Todos/TodoInput";
 import TodoList from "../components/Todos/TodoList";
 import { Todo } from "../components/Todos/model";
 
