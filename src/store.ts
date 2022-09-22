@@ -1,15 +1,13 @@
-/* eslint-disable no-param-reassign */
-
 import { configureStore } from "@reduxjs/toolkit";
-import { userSlice, registerApi } from "./store/user";
+import { userSlice, authApi } from "./store/user";
 
 const store = configureStore({
   reducer: {
     user: userSlice.reducer,
-    [registerApi.reducerPath]: registerApi.reducer,
+    [authApi.reducerPath]: authApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(registerApi.middleware),
+    getDefaultMiddleware().concat(authApi.middleware),
 });
 
 type RootState = ReturnType<typeof store.getState>;

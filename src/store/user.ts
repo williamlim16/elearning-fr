@@ -3,8 +3,8 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import type { User } from "../types/model";
 
-export const registerApi = createApi({
-  reducerPath: "registerApi",
+export const authApi = createApi({
+  reducerPath: "authApi",
   baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:3030" }),
   endpoints: (builder) => ({
     registerUser: builder.mutation({
@@ -38,4 +38,4 @@ export const userSlice = createSlice({
 });
 
 export const { register } = userSlice.actions;
-export const { useRegisterUserMutation } = registerApi;
+export const { useRegisterUserMutation } = authApi;

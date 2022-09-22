@@ -3,13 +3,11 @@ import LoadingButton from "@mui/lab/LoadingButton";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import { useState, useCallback, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { User } from "../../types/model";
-import { selectUser } from "../../store";
 import { register, useRegisterUserMutation } from "../../store/user";
 
 function RegisterInput() {
-  const userData = useSelector(selectUser);
   const dispatch = useDispatch();
   const [registerUser, { isSuccess, isError }] = useRegisterUserMutation();
   const [data, setData] = useState<User>({
@@ -77,7 +75,6 @@ function RegisterInput() {
       >
         Register
       </LoadingButton>
-      <div>{userData.email}</div>
     </Stack>
   );
 }

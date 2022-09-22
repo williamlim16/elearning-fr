@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import MuiAlert, { AlertProps } from "@mui/material/Alert";
 import { Snackbar } from "@mui/material";
+import { useSelector } from "react-redux";
 import RegisterInput from "../components/Register/RegisterInput";
 import CenterInput from "../layout/CenterInput";
+import { selectUser } from "../store";
 
-// import registerHandler from "../components/Register/RegisterService";
 const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
   props,
   ref
@@ -13,16 +14,27 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
 });
 
 function Register() {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [open] = React.useState(false);
+  const [open, setOpen] = React.useState(false);
+  const userData = useSelector(selectUser);
+  useEffect(() => {
+    if (userData.email !== "") {
+      setOpen(true);
+    }
+  }, [userData]);
+
+  const closeSnackBar = () => {
+    setOpen(false);
+  };
 
   return (
     <>
       <CenterInput>
         <RegisterInput />
       </CenterInput>
-      <Snackbar open={open}>
-        <Alert severity="success">Success</Alert>
+      <Snackbar open={open} autoHideDuration={2000} onClose={closeSnackBar}>
+        <Alert severity="success">
+          Successfuly registered. Redirecting you to login
+        </Alert>
       </Snackbar>
     </>
   );
