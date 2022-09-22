@@ -4,11 +4,13 @@ import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import { useState, useCallback, useEffect } from "react";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { User } from "../../types/model";
 import { register, useRegisterUserMutation } from "../../store/user";
 
 function RegisterInput() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [registerUser, { isSuccess, isError }] = useRegisterUserMutation();
   const [data, setData] = useState<User>({
     name: "",
@@ -39,6 +41,7 @@ function RegisterInput() {
     if (isSuccess) {
       setLoading(false);
       dispatch(register(data));
+      navigate("/login");
     } else if (isError) {
       setLoading(false);
     }
