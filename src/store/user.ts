@@ -14,6 +14,13 @@ export const authApi = createApi({
         body: payload,
       }),
     }),
+    loginUser: builder.mutation({
+      query: (payload) => ({
+        url: "/user/login",
+        method: "POST",
+        body: payload,
+      }),
+    }),
   }),
 });
 
@@ -23,6 +30,7 @@ const initialState: User = {
   password: "",
   name: "",
   token: "",
+  role: "",
 };
 
 export const userSlice = createSlice({
@@ -34,8 +42,14 @@ export const userSlice = createSlice({
       state.password = action.payload.password;
       state.name = action.payload.name;
     },
+    login: (state, action: PayloadAction<User>) => {
+      state.email = action.payload.email;
+      state.id = action.payload.id;
+      state.name = action.payload.name;
+      state.role = action.payload.role;
+    },
   },
 });
 
-export const { register } = userSlice.actions;
-export const { useRegisterUserMutation } = authApi;
+export const { register, login } = userSlice.actions;
+export const { useRegisterUserMutation, useLoginUserMutation } = authApi;
