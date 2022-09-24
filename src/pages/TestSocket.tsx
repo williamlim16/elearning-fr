@@ -2,22 +2,30 @@ import io from "socket.io-client";
 import { useEffect, useState } from "react";
 import TextField from "@mui/material/TextField";
 
+const socket = io("http://localhost:3030");
+
 export default function TestSocket() {
-  const socket = io("http://localhost:3030");
-  const [isConnected, setIsConnected] = useState(socket.connected);
+  const [isConnected, setIsConnected] = useState<boolean>(false);
   const [lastPong, setLastPong] = useState<string>("");
   const [string, setString] = useState<string>("");
   const handleOnChange = (event: any) => {
     setString(event.target.value);
   };
-
   const sendPing = () => {
     console.log("this function called");
     socket.emit("message", string);
   };
 
+  const disconnect = () => {
+    socket.disconnect();
+  };
+
+  const connect = () => {
+    socket.connect();
+  };
+
   useEffect(() => {
-    socket.on("connection", () => {
+    socket.on("connect", () => {
       setIsConnected(true);
     });
 
@@ -25,14 +33,12 @@ export default function TestSocket() {
       setIsConnected(false);
     });
 
-    socket.on("message", (data) => {
+    socket.on("receive_message", (data) => {
       setLastPong(data);
     });
 
     return () => {
-      socket.off("connect");
-      socket.off("disconnect");
-      socket.off("pong");
+      socket.removeAllListeners();
     };
   }, [socket]);
   return (
@@ -48,6 +54,12 @@ export default function TestSocket() {
       <p>Last pong: {lastPong || "-"}</p>
       <button onClick={sendPing} type="button">
         Send ping
+      </button>
+      <button onClick={disconnect} type="button">
+        disconnect
+      </button>
+      <button onClick={connect} type="button">
+        connect
       </button>
     </div>
   );
