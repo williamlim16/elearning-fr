@@ -45,7 +45,7 @@ function RegisterInput() {
     } else if (isError) {
       setLoading(false);
     }
-  }, [isSuccess, data, isError, dispatch]);
+  }, [isSuccess, data, isError, dispatch, navigate]);
 
   return (
     <Stack spacing={2}>

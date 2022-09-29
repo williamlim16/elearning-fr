@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import MuiAlert, { AlertProps } from "@mui/material/Alert";
 import { Snackbar } from "@mui/material";
 import { useSelector } from "react-redux";
@@ -14,7 +14,7 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
 });
 
 function Register() {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
   const userData = useSelector(selectUser);
   useEffect(() => {
     if (userData.email !== "") {

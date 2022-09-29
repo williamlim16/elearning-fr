@@ -4,11 +4,13 @@ import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import { useCallback, useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { User } from "../../types/model";
 import { useLoginUserMutation, login } from "../../store/user";
 
 function LoginInput() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [data, setData] = useState<User>({
     password: "",
     email: "",
@@ -37,6 +39,7 @@ function LoginInput() {
     if (isSuccess) {
       setLoading(false);
       dispatch(login(dataResponse));
+      navigate("/dashboard");
     } else if (isError) {
       setLoading(false);
     }
