@@ -5,7 +5,7 @@ import { Stack } from "@mui/system";
 import { useGetCoursesQuery } from "../store/course";
 import { Course } from "../types/course";
 import { allCourseAdapter } from "../components/Course/CourseAdapter";
-import AppBar from "../components/Layouts/AppBar";
+import AppBarLayout from "../components/Layouts/AppBarLayout";
 
 const columns: GridColDef[] = [
   { field: "name", headerName: "Course Name", flex: 2 },
@@ -22,10 +22,10 @@ function Dashboard() {
     }
   }, [data, error, isLoading]);
   return (
-    <AppBar>
+    <AppBarLayout>
       <div style={{ height: 400, width: "100%" }}>
         <Typography variant="h2" gutterBottom>
-          List of Courses
+          Courses
         </Typography>
         <Stack direction="row-reverse">
           <Button variant="outlined">Add Course</Button>
@@ -38,7 +38,7 @@ function Dashboard() {
           checkboxSelection
         />
       </div>
-    </AppBar>
+    </AppBarLayout>
   );
 }
 

@@ -1,14 +1,30 @@
-import { AppBar, Toolbar, IconButton, Typography } from "@mui/material";
+import {
+  AppBar,
+  Toolbar,
+  IconButton,
+  Typography,
+  Box,
+  Drawer,
+} from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
+import { useState } from "react";
 
 type Props = {
   children: JSX.Element;
 };
 
 function AppBarLayout({ children }: Props) {
-  // eslint-disable-next-line react/jsx-no-useless-fragment
+  const [open, setOpen] = useState(false);
+
+  const toggleDrawer = () => {
+    setOpen((prev) => !prev);
+  };
+
   return (
     <>
+      <Drawer open={open} onClose={toggleDrawer}>
+        hello
+      </Drawer>
       <AppBar position="static">
         <Toolbar>
           <IconButton
@@ -17,6 +33,7 @@ function AppBarLayout({ children }: Props) {
             color="inherit"
             aria-label="menu"
             sx={{ mr: 2 }}
+            onClick={toggleDrawer}
           >
             <MenuIcon />
           </IconButton>
@@ -25,7 +42,13 @@ function AppBarLayout({ children }: Props) {
           </Typography>
         </Toolbar>
       </AppBar>
-      {children}
+      <Box
+        sx={{
+          padding: 5,
+        }}
+      >
+        {children}
+      </Box>
     </>
   );
 }
