@@ -39,7 +39,7 @@ function LoginInput() {
     if (isSuccess) {
       setLoading(false);
       dispatch(login(dataResponse));
-      navigate("/dashboard");
+      navigate("/courses");
     } else if (isError) {
       setLoading(false);
     }

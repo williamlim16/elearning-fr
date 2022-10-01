@@ -2,7 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import Todos from "./pages/Todo";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import Dashboard from "./pages/Dashboard";
+import Courses from "./pages/Courses";
 import TestSocket from "./pages/TestSocket";
 
 function App() {
@@ -11,7 +11,7 @@ function App() {
       <Route path="/" element={<Todos />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
-      <Route path="/dashboard" element={<Dashboard />} />
+      <Route path="/courses" element={<Courses />} />
       <Route path="/test" element={<TestSocket />} />
     </Routes>
   );

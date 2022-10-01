@@ -11,6 +11,13 @@ export const courseApi = createApi({
     getCourses: builder.query<CourseResponse[], void>({
       query: () => "/course",
     }),
+    addCourse: builder.mutation({
+      query: (payload) => ({
+        url: "/course/add",
+        method: "POST",
+        body: payload,
+      }),
+    }),
   }),
 });
 
@@ -29,4 +36,4 @@ export const courseSlice = createSlice({
   },
 });
 
-export const { useGetCoursesQuery } = courseApi;
+export const { useGetCoursesQuery, useAddCourseMutation } = courseApi;
